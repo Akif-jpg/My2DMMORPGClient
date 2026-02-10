@@ -49,12 +49,12 @@ func (gc *GameConfig) GetConfig(gcte GameConfigTypeEnum) *GameConfig {
 		file, fileErr = os.ReadFile("config.dev.yml")
 	}
 	// Init game config with default values
-	if fileErr == nil {
+	if fileErr != nil {
 		gc.InitGameConfigWithDefaults()
 	}
 	ymlErr := yaml.Unmarshal(file, gc)
 	// Init game config with default values
-	if ymlErr == nil {
+	if ymlErr != nil {
 		gc.InitGameConfigWithDefaults()
 	}
 
