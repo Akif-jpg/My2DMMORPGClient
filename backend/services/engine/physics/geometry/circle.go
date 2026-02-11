@@ -1,4 +1,4 @@
-package shapes
+package geometry
 
 import (
 	"math"
@@ -7,6 +7,10 @@ import (
 type Circle struct {
 	Center Point
 	Radius float64
+}
+
+func NewCircle(center Point, radius float64) Circle {
+	return Circle{Center: center, Radius: radius}
 }
 
 func (c *Circle) GetType() string {
@@ -25,8 +29,13 @@ func (c *Circle) GetRadius() float64 {
 	return c.Radius
 }
 
-func NewCircle(center Point, radius float64) Circle {
-	return Circle{Center: center, Radius: radius}
+func (c *Circle) GetBounds() Bounds {
+	return Bounds{
+		MinX: c.Center.X - c.Radius,
+		MinY: c.Center.Y - c.Radius,
+		MaxX: c.Center.X + c.Radius,
+		MaxY: c.Center.Y + c.Radius,
+	}
 }
 
 func (c *Circle) IntersectsCircle(other *Circle) bool {

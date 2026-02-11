@@ -1,4 +1,4 @@
-package shapes
+package geometry
 
 type Line struct {
 	Start Point
@@ -43,6 +43,15 @@ func (l *Line) IntersectsLine(other *Line) bool {
 	}
 
 	return false
+}
+
+func (l *Line) GetBounds() Bounds {
+	return Bounds{
+		MinX: min(l.Start.X, l.End.X),
+		MinY: min(l.Start.Y, l.End.Y),
+		MaxX: max(l.Start.X, l.End.X),
+		MaxY: max(l.Start.Y, l.End.Y),
+	}
 }
 
 // Helper functions for line intersection detection

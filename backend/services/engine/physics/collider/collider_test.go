@@ -3,13 +3,13 @@ package collider
 import (
 	"testing"
 
-	"github.com/Akif-jpg/MyHobieMMORPGGame/services/engine/physics/shapes"
+	"github.com/Akif-jpg/MyHobieMMORPGGame/services/engine/physics/geometry"
 )
 
 func TestCollider_LayerMatching(t *testing.T) {
 	// Player collider: Layer 0, Enemy ve Wall ile çarpışabilir
 	player := &Collider{
-		Shape: &shapes.Circle{Radius: 10},
+		ShapeList: []geometry.Shape{&geometry.Circle{Radius: 10}},
 	}
 	player.LayerMask.SetBit(0) // Player layer
 	player.MatchMask.SetBit(1) // Enemy ile çarpışabilir
@@ -17,7 +17,7 @@ func TestCollider_LayerMatching(t *testing.T) {
 
 	// Enemy collider: Layer 1, Player ve Projectile ile çarpışabilir
 	enemy := &Collider{
-		Shape: &shapes.Circle{Radius: 10},
+		ShapeList: []geometry.Shape{&geometry.Circle{Radius: 10}},
 	}
 	enemy.LayerMask.SetBit(1) // Enemy layer
 	enemy.MatchMask.SetBit(0) // Player ile çarpışabilir
@@ -25,7 +25,7 @@ func TestCollider_LayerMatching(t *testing.T) {
 
 	// Projectile: Layer 2, sadece Enemy ile çarpışabilir
 	projectile := &Collider{
-		Shape: &shapes.Circle{Radius: 5},
+		ShapeList: []geometry.Shape{&geometry.Circle{Radius: 5}},
 	}
 	projectile.LayerMask.SetBit(2)
 	projectile.MatchMask.SetBit(1) // Enemy ile çarpışabilir

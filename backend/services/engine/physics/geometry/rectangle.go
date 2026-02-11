@@ -1,4 +1,4 @@
-package shapes
+package geometry
 
 import (
 	"math"
@@ -36,6 +36,15 @@ func (r *Rectangle) GetWidth() float64 {
 
 func (r *Rectangle) GetHeight() float64 {
 	return r.Height
+}
+
+func (r *Rectangle) GetBounds() Bounds {
+	return Bounds{
+		MinX: r.Center.X - r.Width/2,
+		MinY: r.Center.Y - r.Height/2,
+		MaxX: r.Center.X + r.Width/2,
+		MaxY: r.Center.Y + r.Height/2,
+	}
 }
 
 func (r *Rectangle) IntersectsRectangle(other *Rectangle) bool {

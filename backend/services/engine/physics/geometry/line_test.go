@@ -1,4 +1,4 @@
-package shapes
+package geometry
 
 import (
 	"math"
